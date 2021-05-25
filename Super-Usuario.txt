@@ -1,0 +1,8 @@
+consultorio
+python manage.py createsuperuser
+
+Username: nestor32
+Correo Electrónico: nestorfabi678@gmail.com
+Nombres: Fabian
+Apellidos: Ojeda
+Password: autg2021
