@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %}
+Listado de Personas
+{% endblock titulo %}
+
+{% block extracss %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+{% endblock extracss %}
+
+{% block body %}
+  {% if persona %}
+  <div class="col-md-12">
+    <h2>Listado de Personas</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="centrado">#</th>
+                  <th class="centrado">DNI</th>
+                  <th class="centrado">Nombres</th>
+                  <th class="centrado">Apellidos</th>
+                  <th class="centrado">Fecha de Nacimiento</th>
+                  <th>Telefono</th>
+                  <th colspan="2" class="centrado">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for pers in persona %}
+                <tr>
+                  <td class="centrado">{{ pers.id }}</td>
+                  <td>{{ pers.dni }}</td>
+                  <td>{{ pers.nombre }}</td>
+                  <td>{{ pers.apellido }}</td>
+                  <td>{{ pers.fecha_nac }}</td>
+                  <td>{{ pers.telefono }}</td>
+                  <td>
+                    <a class="centrado" href="editar_persona/{{pers.id}}" class="btn btn-sm btn-block btn-primary ">Editar</a>
+                    <a class="centrado" href="eliminar_persona/{{pers.id}}" class="btn btn-sm btn-block btn-danger">Eliminar</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+  {% else %}
+  <h1>No existen personas registradas</h1>
+  {% endif %}
+
+
+{% endblock body %}

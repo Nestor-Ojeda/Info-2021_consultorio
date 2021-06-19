@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %}
+Listado de Obra Sociales
+{% endblock titulo %}
+
+{% block extracss %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+{% endblock extracss %}
+
+{% block body %}
+  {% if obra_social %}
+  <div class="col-md-12">
+    <h2>Listado de Obra Social</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="centrado">#</th>
+                  <th class="centrado">Nombre Obra Social</th>
+                  <th class="centrado">Plan de Cobertura</th>
+                  <th colspan="2" class="centrado">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for os in obra_social %}
+                <tr>
+                  <td class="centrado">{{ os.id }}</td>
+                  <td>{{ os.nombre_os }}</td>
+                  <td>{{ os.plan_cobertura }}</td>
+                  <td>
+                    <a class="centrado" href="editar_obra_social/{{os.id}}" class="btn btn-sm btn-block btn-primary ">Editar</a>
+                    <a class="centrado" href="obrasocial_confirm_delete/{{os.id}}" class="btn btn-sm btn-block btn-danger">Eliminar</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+  {% else %}
+  <h1>No existen Obra Sociales registradas</h1>
+  {% endif %}
+
+
+{% endblock body %}
